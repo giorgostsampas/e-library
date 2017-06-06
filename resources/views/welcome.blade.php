@@ -18,9 +18,9 @@
       <label for="password">Password</label>
       <input class="form-control" type="password" name="password" id="password">
     </div>
-    <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}" >                <!-- kokkinizei to koutaki logw bootstrap-se error -->
+    <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}" >
       <label for="email">E-Mail</label>
-      <input class="form-control" type="text" name="email" id="email" value="{{ Request::old('email')}}">   <!-- to request.old=gia na min ksanavazoume pali ta stoixeia se error -->
+      <input class="form-control" type="text" name="email" id="email" value="{{ Request::old('email')}}">        <!-- το request.old για να κραταει τα στοιχεία μας σε περίπτωση ερρορ -->
     </div>
     <div class="form-group {{ $errors->has('city') ? 'has-error' : ''}}" >
       <label for="city">Πόλη</label>
@@ -28,7 +28,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Αποστολή</button>
-    <input type="hidden" name="_token" value="{{Session::token()}}">          <!-- einai facade -->
+    <input type="hidden" name="_token" value="{{Session::token()}}">
 </form>
 </div>
 <div class="col-md-6">

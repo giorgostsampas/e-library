@@ -59,13 +59,11 @@
           </div>
 
 <!--         <div class="inner cover">
-            <h1 class="cover-heading">Κάνε εγγραφή για να μπορέσεις να δείς την συλλογή απο τα βιβλία.</h1>
 
           </div>    η κλαση στο κεντρο -->
 
        <div class="mastfoot">
             <div class="inner">
-            <!--   DOIKIMIIIIIIIII -->
               <p>Copyright © 2017 Tsampas Giorgos  All rights reserved.</p>
             </div>
             <div class="footer-social">
