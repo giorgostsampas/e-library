@@ -1,0 +1,11 @@
+It really depends. Is this a personal, more toy-type app? If so, you can probably skip the tests. In that case, I'd begin with:
+
+1. Decide the first feature/page I want to write.
+2. Create a route, and direct the endpoint to a controller.
+3. Create the controller, add the method, load an appropriate view.
+4. Create the view, add some dummy text.
+5. Load page in the browser to ensure it's all working.
+6. Flesh out HTML.
+7. Write CSS in app.scss file, while running gulp watch
+8. Import "public/css/app.css" in the head tag of my view master page.
+9. Rinse and repeat.

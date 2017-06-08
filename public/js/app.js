@@ -1,7 +1,7 @@
-var postId = 0;               //einai gia to id gia na fenete sto edit
+var postId = 0;               //einai gia to id gia na fenete sto edit    ,edit to post
 var postBodyElement = null;      //gia na ginete amesws to update
 
-$('.post').find('.interaction').find('.edit').on('click',function(event) {
+$('.post').find('.action').find('.edit').on('click',function(event) {
   event.preventDefault();
 
 postBodyElement = event.target.parentNode.parentNode.childNodes[1];
@@ -21,24 +21,5 @@ $('#modal-save').on('click',function() {
   .done(function(msg) {
     $(postBodyElement).text(msg['new_body']);
     $('#edit-modal').modal('hide') ;                                    //an den ginei pass to validation ,gia na ginete amesws to update xwris reload
-  });
-});
-
-$('.like').on('click', function(event) {
-  event.preventDefault();
-     postId = event.target.parentNode.parentNode.dataset['postid'];
-  var isLike = event.target.previousElementSibling == null;
-  $.ajax({
-    method: 'POST',
-    url : urlLike ,
-    data: {isLike: isLike, postId: postId, _token:token}
-  })
-  .done(function() {
-event.target.innerText = isLike ? event.target.innerText == 'Like' ? 'You like this post' : 'Like' : event.target.innerText == 'dislike' ? 'You dont like this post' : 'Dislike';
-if (isLike) {
-  event.target.nextElementSibling.innerText = 'Dislike';
-}else {
-  event.target.previousElementSibling.innerText ='Like';
-}
   });
 });

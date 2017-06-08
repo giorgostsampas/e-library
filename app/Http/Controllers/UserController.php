@@ -13,13 +13,13 @@ class UserController extends Controller
 
   public function postRegister(Request $request)
   {
-    $this->validate($request, [              //validation
+    $this->validate($request, [
       'username' => 'required|max:100',
       'password' => 'required|min:4',
       'email' => 'required|email|unique:users',
     ]);
 $username = $request['username'];
-$password = bcrypt($request['password']);  //kriptografisi password
+$password = bcrypt($request['password']);  //kriptografisi
 $email = $request['email'];
 $city = $request['city'];
 
@@ -55,32 +55,4 @@ public function getLogout()
   Auth::logout();
   return redirect()->route('home');
 }
-public function getAccount()
-{
-  return view('account', ['user' => Auth::user()]);
-}
-
-public function postSaveAccount(Request $request)
-{
-  $this->validate($request,[
-    'username' => 'required|max:100'
-  ]);
-
-  $user= Auth::user();
-  $user->username = $request['username'];
-  $user->update();
-  $file = $request->file('image');              //to file einai methodos gia to store tis eikonas
-  $filename = $request ['username'] . '-' . $user->id . '.jpg' ;
-  if ($file) {
-    Storage::disk('local')->put($filename, File::get($file));
-}
-return redirect()->route('account');
-}
-
-public function getUserImage($filename)
-{
-  $file = Storage::disk('local')->get($filename);
-  return new Response($file, 300);                 //de kanoume route edw  gt einai to arxeio src sto account,de kanoume redirect
-}
-
 }

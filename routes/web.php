@@ -13,25 +13,17 @@ Auth::loginUsingId(1);
 */
 
 
-
-
-
-
-
-
-
-
 Route::group(['middleware' => ['web']],function() {});
 
-Route::get('/',function () {
+Route::get('/',function () {                  //για την αρχική ,home
   return view('home');
 })->name('home');
 
-  Route::get('/welcome', function () {
+  Route::get('/welcome', function () {        //για την welcome ,register -signin
       return view('welcome');
   })->name('welcome');
 
-  Route::get('/about', function(){
+  Route::get('/about', function(){              // ιγα τις πληροφορίες
     return view('about');
   })->name('about');
 
@@ -60,18 +52,6 @@ Route::post('/contact', [                                       //για την 
     'as' =>'logout'
   ]);
 
-  Route::get('/account', [
-      'uses' => 'UserController@getAccount',
-      'as' => 'account'
-  ]);
-  Route::post('/upateaccount', [
-      'uses' => 'UserController@postSaveAccount',
-      'as' => 'account.save'
-  ]);
-  Route::get('/userimage/{filename}', [
-      'uses' => 'UserController@getUserImage',
-      'as' => 'account.image'
-  ]);
 
 Route::get('/dashboard', [
   'uses' => 'PostController@getDashboard',
@@ -86,32 +66,18 @@ Route::get('/dashboard', [
 ]);
 
 
-
-Route::get('/delete-post/{post_id}', [                          //oti den einai ena normal route ,alla value enos variable,
+Route::get('/delete-post/{post_id}', [                          // value
   'uses' => 'PostController@getDeletePost',
   'as' => 'post.delete',
   'middleware' => 'auth'
 ]);
 
-// to route  edit post mas,mesa sto js kai  dashbord  katw, json pername to message apo tin js
-Route::post('/edit', [
+
+Route::post('/edit', [                           // to route  edit post mas,mesa sto js kai , json pername to message apo tin js
   'uses' => 'PostController@postEditPost',
   'as' => 'edit'
 ]);
 
-Route::post('/like', [
-  'uses' => 'PostController@postLikePost',
-  'as' => 'like'
-]);
-
-
-
-
-//Route::group(['middleware' => ['web']],function() {
-
-// Route::get('/upload',function() {                 //για να γινεται upload το αρχειο
-//return view('upload');
-//});
 
 Route::get('/upload', [                                 //για να γινεται upload το αρχειο
   'uses' => 'PostController@getUpload',
@@ -119,26 +85,25 @@ Route::get('/upload', [                                 //για να γινετ
   'middleware' => 'auth'
 ]);
 
-
-//Route::post('/pdfbooks',function() {                  // για να μπαινει στο storage το αρχειο
-  //$file = request()->file('pdfbook');
-//$ext = $file->guessClientExtension();
-//request()->file('pdfbook')->store('pdfbooks');  //διαβαζοντε στo page/storage/arxeio.txt και τα κανει save
-//return  back();
-// });
-//
-//
-//return response()->download($file);      γινεται download στο πισι το pdf
-
-//return  $file->storeAs('pdfbooks/' . auth()->id(), "pdfbook.{$ext}");      // τα κανει στορε και φαινονται και σε ποια κατευθυνση
-
-//return response()->file($file);       εκεινη την στιγμη κανεις preview το pdf
-
-
-
-
 Route::post('/pdfbooks',[
   'uses' => 'PostController@postDownload',
   'as' =>'pdfbooks',
   'middleware' => 'auth'
 ]);
+
+
+/*
+
+Route::post('/pdfbooks',function() {                  // για να μπαινει στο storage το αρχειο
+  $file = request()->file('pdfbook');
+$ext = $file->guessClientExtension();
+request()->file('pdfbook')->store('pdfbooks');          // στo page/storage/arxeio.txt και τα κανει save
+return  back();
+ });
+
+/return response()->download($file);      γινεται download στο πισι το pdf
+
+return  $file->storeAs('pdfbooks/' . auth()->id(), "pdfbook.{$ext}");      // τα κανει store και φαινονται και σε ποια κατευθυνση
+
+return response()->file($file);       εκεινη την στιγμη κανεις preview το pdf
+*/
