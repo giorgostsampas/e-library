@@ -1,7 +1,5 @@
 An e-library in which users can upload and download ebooks.
-
 It is based on Laravel PHP framework,jQuery,mySQL,CSS bootstrap,html.
-
 It was a university project.
 
 
